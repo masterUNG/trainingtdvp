@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tdvp/components/frontend/customer/dashboard/dashboardpage.dart';
 import 'package:tdvp/components/frontend/customer/orders/history_orders.dart';
 import 'package:tdvp/components/frontend/customer/profile/customer_dataprofile.dart';
@@ -74,7 +75,14 @@ class _CustomerServiceState extends State<CustomerService> {
         backgroundColor: StyleProjects().primaryColor,
         // ignore: prefer_const_literals_to_create_immutables
         actions: <Widget>[
-          const ConfigLogout(),
+          // const ConfigLogout(),
+          IconButton(
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut().then((value) {
+                  Get.offAll(const AuthenticationPage());
+                });
+              },
+              icon: Icon(Icons.exit_to_app))
         ],
       ),
       drawer: Drawer(
@@ -387,16 +395,18 @@ class _CustomerServiceState extends State<CustomerService> {
               backgroundColor: Colors.transparent, */
             ), */
 
-      accountName: Row(
-        children: [
-          /* ConfigText(
-            lable: 'คุณ',
-            textStyle: StyleProjects().contentstyle1,
-          ),
-          StyleProjects().boxwidth1,
-          StyleProjects().topicaccount(fname == null ? 'fname' : fname!), */
-        ],
-      ),
+      // accountName: Row(
+      //   children: [
+      //      ConfigText(
+      //       lable: 'คุณ',
+      //       textStyle: StyleProjects().contentstyle1,
+      //     ),
+      //     StyleProjects().boxwidth1,
+      //     StyleProjects().topicaccount(fname == null ? 'fname' : fname!),
+      //   ],
+      // ),
+
+      accountName: Text('data'),
 
       accountEmail: Row(
         children: [

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tdvp/components/frontend/guest/authentication/authentication.dart';
 import 'package:tdvp/utility/config_text.dart';
 import 'package:tdvp/utility/style.dart';
@@ -33,10 +34,17 @@ class _ConfigLogoutState extends State<ConfigLogout> {
               TextButton(
                 //onPressed: () => Navigator.pop(context),
                 onPressed: () async {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AuthenticationPage()));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => const AuthenticationPage()));
+
+                  await FirebaseAuth.instance.signOut().then((value) {
+                    Get.offAll(const AuthenticationPage());
+                  }).catchError((onError) {
+                    print('## onError --> ${onError.toString()}');
+                    Get.offAll(const AuthenticationPage());
+                  });
                 },
 
                 child: Text(
