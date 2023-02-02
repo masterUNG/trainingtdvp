@@ -75,14 +75,14 @@ class _CustomerServiceState extends State<CustomerService> {
         backgroundColor: StyleProjects().primaryColor,
         // ignore: prefer_const_literals_to_create_immutables
         actions: <Widget>[
-          // const ConfigLogout(),
-          IconButton(
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut().then((value) {
-                  Get.offAll(const AuthenticationPage());
-                });
-              },
-              icon: Icon(Icons.exit_to_app))
+          const ConfigLogout(),
+          // IconButton(
+          //     onPressed: () async {
+          //       await FirebaseAuth.instance.signOut().then((value) {
+          //         Get.offAll(const AuthenticationPage());
+          //       });
+          //     },
+          //     icon: Icon(Icons.exit_to_app))
         ],
       ),
       drawer: Drawer(
